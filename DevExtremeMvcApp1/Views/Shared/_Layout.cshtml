@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DevExtremeMvcApp1</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+
+    @Styles.Render("~/Content/bundle")
+    @Styles.Render("~/Content/DevExtremeBundle")
+    @Scripts.Render("~/Scripts/bundle")
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <style>
+        .form {
+            margin-left: 3px;
+        }
+
+            .form > div:first-child {
+                margin-right: 320px;
+            }
+
+        .label {
+            font-size: 22px;
+        }
+
+        #product-details {
+            width: 400px;
+            height: 400px;
+            margin: 20px auto 0;
+        }
+
+            #product-details > img {
+                height: 300px;
+                width: 400px;
+            }
+
+            #product-details > .name {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            #product-details > .price {
+                text-align: center;
+                font-size: 24px;
+            }
+
+        .dark #product-details > div {
+            color: #f0f0f0;
+        }
+
+        .options {
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 260px;
+            top: 0;
+            background-color: rgba(191, 191, 191, 0.15);
+        }
+
+        .caption {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .option {
+            margin-top: 10px;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+
+        .wrapper {
+            display: flex;
+            align-items: stretch;
+        }
+         
+
+        .dx-menu-item-wrapper {
+            color: #fff;
+            
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+        ul .dx-menu-items-container {
+            width: 100%;
+            padding: 10px;
+        }
+
+
+
+
+        .wrapper2 {
+            display: flex;
+            align-items: stretch;
+            height: 100%;
+            max-height: 100%;
+        }
+
+        .wrapper {
+            position: relative;
+            top: 0;
+            min-height: calc(100vh - 90px);
+            height: 100vh;
+        }
+
+
+        .wrapper3 {
+            position: relative;
+            top: 0;
+        }
+
+        .sidebar {
+            height: 100%;
+            max-height: 100%;
+            height: calc(100vh - 4px);
+            width: 230px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            background-size: cover;
+            background-position: 50%;
+            display: block;
+            background: linear-gradient(180deg,#e9e9e9,#ffffff, #e9e9e9);
+            box-shadow: 0 0 25px 0 rgba(0,0,0,0.1);
+            margin-top: 3px;
+            margin-left: 0px;
+            border-radius: 0px 2px 3px 3px;
+        }
+
+        .sidebar-wrapper {
+            width: 100%;
+            min-height: 100%;
+            max-height: calc(100vh - 705px);
+            z-index: 4;
+            position: relative;
+            overflow: auto;
+        }
+
+        #sidebar {
+            min-height: calc(100vh - 57px);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .sidebar-header {
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ee6010+0,ee6010+49,d02a03+50,d02a03+100 */
+            background: #ee6010; /* Old browsers */
+            background: -moz-linear-gradient(left, #ee6010 0%, #ee6010 49%, #d02a03 50%, #d02a03 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left, #ee6010 0%,#ee6010 49%,#d02a03 50%,#d02a03 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right, #ee6010 0%,#ee6010 49%,#d02a03 50%,#d02a03 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee6010', endColorstr='#d02a03',GradientType=1 ); /* IE6-9 */
+            height: 55px;
+        }
+
+        
+        .navbar-padding0 {
+            padding: 0;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+      
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar-padding0  navbar-default navbar-fixed-top" style="border-top:3px solid #d02a03; margin-left:233px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>                  
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="./">Joseph Anton <span class="sr-only">(current)</span></a></li>
+                    <!--<li><a href="../navbar-static-top/">Account</a></li>-->
+                    <li><a href="../navbar-fixed-top/">Logout</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="wrapper3 ">      
+        <div class="sidebar box-shadow2 d-none d-sm-none d-md-none d-lg-block d-xl-block"  style="">
+            <div class="sidebar-wrappe2r ">
+                <div class="navbar-collap2se " id="">
+                    <div class="sidebar-head2er">
+                        &nbsp;
+                    </div>
+                    <ul class="list-unstyled components">
+                        <h4 style="color:#000;padding:10px;">Main Menu - Gara</h4>
+                        <div id="menu"></div>
+                    </ul>
+
+                    <div class=" text-muted " style="position: absolute; line-height:40px;  bottom:0px; left:0; text-align: center; width:100%; background:transparent;">
+
+                        <div class="col-12 text-center   ">
+                            <div style="border-bottom:1px solid #cecece;  ">
+                            </div>
+                            <div style="border-top:1px solid #fff;  ">
+                            </div>
+                        </div>
+                        <div class="mineware-copyright">
+                            &copy; 2018 Mineware Consulting
+                            <br />
+                            All rights Reserved
+                        </div>
+
+                        <div class="col-12 h5 text-center  ">
+                            <div style="border-bottom:1px solid #cecece;  ">
+                            </div>
+                            <div style="border-top:1px solid #fff;  ">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-xs-12 col-lg-9 col-xl-10 col-lg-offset-1 float-xl-right">-->
+        <div class="content card">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script>
+
+        function toObject(arr) {
+            var myMap = new Map();
+            var rv = {};
+            var obj = { id: "value1", name: "value2" };
+            var items = [];
+            for (var i = 0; i < arr.length; ++i) {              
+                myMap.set(i,arr[i]) ;
+                
+                //Object.extend(obj, { id:i, name: arr[i] });
+            }
+            return myMap;
+        }
+
+      
+      
+
+        var menuData = [{
+            id: "1",
+            name: "Data Maintenance",
+          
+            items: [{
+                id: "1_1",
+                name: "Jumbo",
+                page: "Jumbo",
+                controller: "Home"
+            },
+                {
+                id: "1_2",
+                name: "Hand Held Mining"
+                },  {
+                    name: "Long Hole Mining"
+                }, {
+                    name: "Long Hole Drilling"
+                }, {
+                    name: "Misc Jumbo / Long Hole Drilling"
+                }, {
+                    name: "Bogging"
+                }, {
+                    name: "Trucking"
+                }, {
+                    name: "Cable Bolt Drilling"
+                }, {
+                    name: "Cable Bolt Other"
+                }, {
+                    name: "Misc Works"
+                }, {
+                    name: "Day Works"
+                }, {
+                    name: "Shaft Hoist"
+                }]
+        }, {
+            id: "2",
+            name: "View Data Tables",
+            items: [{
+                id: "2_1",
+                name: "Data Tables"
+            }, {
+                id: "2_2",
+                name: "Data Tables Lists",
+               
+            }, {
+                id: "2_3",
+                name: "Data Tables other",
+               
+            }]
+        }, {
+            id: "3",
+                name: "Lookup Tables",
+            items: [{
+                id: "3_1",
+                name: "Mine Locations & Trucking Distances"               
+            }, {
+                id: "3_2",
+                name: "Machines & Trucking Distances",
+                items: [{
+                    id: "3_2_1",
+                    name: ""
+                }, {
+                    id: "3_2_2",
+                    name: ""                 
+                }]
+            }]
+        }, {
+            id: "4",
+            name: "Reports Graphs",
+            items: [{
+                id: "4_1",
+                name: "Projector Plus",
+                iconSrc: "images/products/14.png",
+                price: 550
+            }, {
+                id: "4_2",
+                name: "Projector PlusHD",
+                iconSrc: "images/products/15.png",
+                price: 750
+            }]
+        },
+        {
+            id: "5",
+            name: "Utilities",
+            items: [{
+                id: "5_1",
+                name: "Projector Plus",
+                iconSrc: "images/products/14.png",
+                price: 550
+            }, {
+                id: "5_2",
+                name: "Projector PlusHD",
+                iconSrc: "images/products/15.png",
+                price: 750
+            }]
+        }];
+
+        $(function () {
+            var dxMenu = $("#menu").dxMenu({
+                orientation: 'vertical',
+                dataSource: menuData,
+                hideSubmenuOnMouseLeave: false,
+                displayExpr: "name",
+                onItemClick: function (data) {
+                   
+                    var item = data.itemData;
+                    if (item.price) {
+                        $("#product-details").removeClass("hidden");
+                        $("#product-details > img").attr("src", item.iconSrc);
+                        $("#product-details > .price").text("$" + item.price);
+                        $("#product-details > .name").text(item.name);
+                    }
+                    
+                    if (typeof item.page !== "undefined") {
+                        console.log(item.page);
+
+                        switch (item.page) {
+                            case "Jumbo":                                
+                                window.location.href = '@Url.Action("Jumbo", "Home")';
+                            break;    
+                        }
+
+                      
+                        
+                    }
+                }
+            }).dxMenu("instance");
+
+            var showSubmenuModes = [{
+                name: "onHover",
+                delay: { show: 0, hide: 500 }
+            }, {
+                name: "onClick",
+                delay: { show: 0, hide: 300 }
+            }];
+
+            $("#show-submenu-mode").dxSelectBox({
+                items: showSubmenuModes,
+                value: showSubmenuModes[1],
+                displayExpr: "name",
+                onValueChanged: function (data) {
+                    dxMenu.option("showFirstSubmenuMode", data.value);
+                }
+            });
+
+            $("#orientation").dxSelectBox({
+                items: ["horizontal", "vertical"],
+                value: "horizontal",
+                onValueChanged: function (data) {
+                    dxMenu.option("orientation", data.value);
+                }
+            });
+
+            $("#submenu-direction").dxSelectBox({
+                items: ["auto", "rightOrBottom", "leftOrTop"],
+                value: "auto",
+                onValueChanged: function (data) {
+                    dxMenu.option("submenuDirection", data.value);
+                }
+            });
+
+            $("#mouse-leave").dxCheckBox({
+                value: false,
+                text: "Hide Submenu on Mouse Leave",
+                onValueChanged: function (data) {
+                    dxMenu.option("hideSubmenuOnMouseLeave", data.value);
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+
+    </script>
+</body>
+</html>

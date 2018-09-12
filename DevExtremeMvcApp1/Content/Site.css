@@ -1,0 +1,25 @@
+﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+    
+    border-top: 0px solid #d02a12;
+   
+}
+.content {
+    margin-left: 236px;
+    margin-top:70px;
+}
+
+
+.bb {
+    border:2px solid #993300;
+}
+
+
+
+#sidebar {
+    min-height: calc(100vh - 7px);
+}
