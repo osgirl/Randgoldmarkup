@@ -285,7 +285,9 @@
             },
                 {
                 id: "1_2",
-                name: "Hand Held Mining"
+                    name: "Hand Held Mining",
+                    page: "HandHeldMining",
+                    controller: "Home"
                 },  {
                     name: "Long Hole Mining"
                 }, {
@@ -392,7 +394,10 @@
                         switch (item.page) {
                             case "Jumbo":                                
                                 window.location.href = '@Url.Action("Jumbo", "Home")';
-                            break;    
+                                break;   
+                            case "HandHeldMining":                                
+                                window.location.href = '@Url.Action("HandHeldMining", "Home")';
+                                break;   
                         }
 
                       

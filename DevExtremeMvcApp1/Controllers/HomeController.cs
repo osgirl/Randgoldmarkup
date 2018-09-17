@@ -43,6 +43,10 @@ namespace DevExtremeMvcApp1.Controllers {
             return View(userInfo);
         }
 
+        public ActionResult HandHeldMining() {
+         return View();
+        }
+
         public ActionResult SuccessValidation()
         {
             return View();

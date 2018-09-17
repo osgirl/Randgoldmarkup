@@ -224,6 +224,7 @@
     <Content Include="Views\Home\Jumbo.cshtml" />
     <Content Include="Views\Home\DataMaintenance.cshtml" />
     <Content Include="Views\Home\SuccessValidation.cshtml" />
+    <Content Include="Views\Home\HandHeldMining.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -30,7 +30,10 @@ namespace DevExtremeMvcApp1.Models
         public string ReamerHolesMetres { get; set; }
         public string CableBoltMetres { get; set; }
 
-  public string DrivingCutsFired { get; set; }
+        public string PinHoleHoles { get; set; }
+        public string PinHoleHolesMetres { get; set; }
+
+        public string DrivingCutsFired { get; set; }
         public string DrivingCutsFiredMetres { get; set; }
         public string DrivingCutsFiredAdv { get; set; }
         public string DrivingCutsFiredVol { get; set; }
@@ -67,11 +70,12 @@ namespace DevExtremeMvcApp1.Models
         public string Description { get; set; }
         public DateTime HireDate { get; set; }
 
-        
+        public string ActivityType { get; set; }
+        public string Quantity { get; set; }
 
-       
 
-      
+
+
 
 
     }

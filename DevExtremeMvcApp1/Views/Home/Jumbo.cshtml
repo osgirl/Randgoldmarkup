@@ -50,159 +50,168 @@
 
 <div class="long-title"><h3>Jumbo</h3></div>
 <div id="form-container">
-</div>
 
 
 
-@using (Html.BeginForm())
-{
 
-    using (Html.DevExtreme().ValidationGroup())
+    @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
-        @(Html.DevExtreme().Form<FormLayoutFeaturesModel>()
-                                                                                .ColCount(2)
-                                                                                .Items(items =>
-                                                                                {
-                                                                                items.AddGroup().ColSpan(1)
-                    .Caption("Jumbo System Data Section")
-                    .Items(groupItems =>
-                    {
-                        groupItems.AddSimpleFor(m => m.Date);
-                        groupItems.AddSimpleFor(m => m.Shift).Editor(e => e.SelectBox().DataSource(new String[] { "Day", "Night" }).Width("100%"));
-                        groupItems.AddSimpleFor(m => m.Operator).Editor(e => e.SelectBox().DataSource(new String[] { "Marcus, Duck", "John Davies" }).Width("100%"));
-                        groupItems.AddSimpleFor(m => m.JumboId).Editor(e => e.SelectBox().DataSource(new String[] { "DD0004 -  SANDVIK DD421", "" }).Width("100%"));
-                        groupItems.AddSimpleFor(m => m.UGLocationHeadingSize).Editor(e => e.SelectBox().DataSource(new String[] { "335L IDS - 335L/GARA/5.5mH x 5.0mW (30.0m2)", "" }).Width("100%"));
-                    }).CssClass("wrapper-for-group");
 
-                                                                                items.AddGroup().ColSpan(1)
-                    .Caption("Select Data Entry Period")
-                    .Items(groupItems =>
-                    {
-                        groupItems.AddSimpleFor(m => m.EntryPeriod)
-            .Editor(e => e.SelectBox()
-            .DataSource(new String[] { "1/7/2018  - 31/7/2018 Current", "" })
-            .Width("100%")).Label(q => q.Text("Select Data Entry Period"))
-            .CssClass("hellothere");
-                        groupItems.AddButton().HorizontalAlignment(HorizontalAlignment.Center).ButtonOptions(b => b.Text("Add Delay Records").Width("50%"));
-                    }).CssClass("wrapper-for-group");
+        using (Html.DevExtreme().ValidationGroup())
+        {
+            @Html.AntiForgeryToken()
+            @(Html.DevExtreme().Form<FormLayoutFeaturesModel>()
+                                                                                                    .ColCount(2)
+                                                                                                    .Items(items =>
+                                                                                                    {
+                                                                                                        items.AddGroup().ColSpan(1)
+                            .Caption("Jumbo System Data Section")
+                            .Items(groupItems =>
+                            {
+                                groupItems.AddSimpleFor(m => m.Date);
+                                groupItems.AddSimpleFor(m => m.Shift).Editor(e => e.SelectBox().DataSource(new String[] { "Day", "Night" }).Width("100%"));
+                                groupItems.AddSimpleFor(m => m.Operator).Editor(e => e.SelectBox().DataSource(new String[] { "Marcus, Duck", "John Davies" }).Width("100%"));
+                                groupItems.AddSimpleFor(m => m.JumboId).Editor(e => e.SelectBox().DataSource(new String[] { "DD0004 -  SANDVIK DD421", "" }).Width("100%"));
+                                groupItems.AddSimpleFor(m => m.UGLocationHeadingSize).Editor(e => e.SelectBox().DataSource(new String[] { "335L IDS - 335L/GARA/5.5mH x 5.0mW (30.0m2)", "" }).Width("100%"));
 
+                                groupItems.AddButton().ButtonOptions(b => b.Text("Help").OnClick(@<text>
+                                    function() {
+                                    $("#popup").dxPopup("show");
+                                    $("#popup").dxPopup("toggle",true);
+                                    }
+                                </text>));
 
-                                                                                items.AddGroup()
-                    .Caption("Holes & Metres Drilled")
-                    .ColCount(2).ColSpan(4)
-                    .Items(groupItems =>
-                    {
-                        groupItems.AddSimpleFor(m => m.DrillSteelLength).Editor(e => e
-                        .SelectBox()
-                        .DataSource(new String[] { "4.9m", "5.1m" })
-                        .Placeholder("")
-                        ).Label(q => q.Text("Driving Cuts Fired")).ColSpan(2);
+                                        }).CssClass("wrapper-for-group");
 
-                        groupItems.AddSimpleFor(m => m.FaceHoleLength).ColSpan(2);
-
-                        groupItems.AddSimpleFor(m => m.FaceHoles).ColSpan(1);
-                        groupItems.AddSimpleFor(m => m.FaceHolesMetres).Label(q => q.Text("(m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(1);
-
-                        groupItems.AddSimpleFor(m => m.StrippingHoles).ColSpan(1);
-                        groupItems.AddSimpleFor(m => m.StrippingMetres).Label(q => q.Text("(m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(1);
-
-                        groupItems.AddSimpleFor(m => m.ReamerHoles).ColSpan(1);
-                        groupItems.AddSimpleFor(m => m.ReamerHolesMetres).Label(q => q.Text("(m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(1);
-
-                        groupItems.AddSimpleFor(m => m.CableBoltMetres).Label(q => q.Text("Cable Bolt (m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(2);
+                                                                                                                    items.AddGroup().ColSpan(1)
+                        .Caption("Select Data Entry Period")
+                        .Items(groupItems =>
+                        {
+                                                        groupItems.AddSimpleFor(m => m.EntryPeriod)
+                            .Editor(e => e.SelectBox()
+                            .DataSource(new String[] { "1/7/2018  - 31/7/2018 Current", "" })
+                            .Width("100%")).Label(q => q.Text("Select Data Entry Period"))
+                            .CssClass("hellothere");
+                                                        groupItems.AddButton().HorizontalAlignment(HorizontalAlignment.Right).ButtonOptions(b => b.Text("Add Delay Records").Width("50%"));
+                                                    }).CssClass("wrapper-for-group");
 
 
-                    }).CssClass("wrapper-for-group");
+                                                                                                                    items.AddGroup()
+                                                                                                       .Caption("Holes & Metres Drilled")
+                                                                                                       .ColCount(2).ColSpan(4)
+                                                                                                       .Items(groupItems =>
+                                                                                                       {
+                                                                                                                                       groupItems.AddSimpleFor(m => m.DrillSteelLength).Editor(e => e
+                                                                                                                       .SelectBox()
+                                                                                                                       .DataSource(new String[] { "4.9m", "5.1m" })
+                                                                                                                       .Placeholder("")
+                                                                                                                       ).Label(q => q.Text("Driving Cuts Fired")).ColSpan(2);
 
-                                                                                items.AddGroup()
-                                                                                 .Caption("Griddy McGridface")
-                                                                                 .ColSpan(2)
-                                                                                 .Template(@<text>
-                            @(Html.DevExtreme().DataGrid<GroundSupportItem>()
-                                                            .ShowBorders(true)
-                                                            .Columns(columns =>
-                                                            {
-                                                                          columns.AddFor(m => m.Item).Caption("Ground Support Item #");
-                                                                          columns.AddFor(m => m.Quantity);
-                                                                          columns.AddFor(m => m.MetresDrilled);
-                                                                          columns.AddFor(m => m.PieceRateCode);
-                                                                      })
-                                                            .Paging(p => p.PageSize(10))
-                                                            .FilterRow(f => f.Visible(true))
-                                                            .HeaderFilter(f => f.Visible(true))
-                                                            .GroupPanel(p => p.Visible(true))
-                                                            .Grouping(g => g.AutoExpandAll(false))
-                                                            .RemoteOperations(true)
+                                                                                                                                       groupItems.AddSimpleFor(m => m.FaceHoleLength).ColSpan(2);
 
-                                                            .Summary(s => s
-                                                            .TotalItems(totalItems =>
-                                                            {
-                                                                          totalItems.AddFor(m => m.ItemId).SummaryType(SummaryType.Count);
-                                                                      })
-                                                            .GroupItems(groupItems =>
-                                                            {
-                                                                          groupItems.Add().SummaryType(SummaryType.Count);
-                                                                      })
-                                                            ).ToTemplate()
-                            )
-                                        </text>).CssClass("wrapper-for-group");
+                                                                                                                                       groupItems.AddSimpleFor(m => m.FaceHoles).ColSpan(1);
+                                                                                                                                       groupItems.AddSimpleFor(m => m.FaceHolesMetres).Label(q => q.Text("(m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(1);
 
-                                                                                    items.AddGroup()
-                                                                                             .Caption("Cuts / Holes Fired")
-                                                                                             .ColSpan(2).ColCount(4)
-                                                                                             .Items(groupItems =>
-                                                                                             {
-                                                                                                 groupItems.AddSimpleFor(m => m.DrivingCutsFired).Editor(e => e.TextBox().Placeholder("Add values")).Label(q => q.Text("Driving Cuts Fired")).ColSpan(1);
-                                                                                                 groupItems.AddSimpleFor(m => m.DrivingCutsFiredMetres).Editor(e => e.TextBox().Placeholder("Add values")).Label(q => q.Text("Metres/Cut")).ColSpan(1);
-                                                                                                 groupItems.AddSimpleFor(m => m.DrivingCutsFiredAdv).Label(q => q.Text("Adv (m)")).ColSpan(1);
-                                                                                                 groupItems.AddSimpleFor(m => m.DrivingCutsFiredVol).Label(q => q.Text("Vol (m3)")).ColSpan(1);
+                                                                                                                                       groupItems.AddSimpleFor(m => m.StrippingHoles).ColSpan(1);
+                                                                                                                                       groupItems.AddSimpleFor(m => m.StrippingMetres).Label(q => q.Text("(m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(1);
 
-                                                                                                 groupItems.AddSimpleFor(m => m.ContractItem1).Label(q => q.Text("Contact Item")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
-                                                                                                 groupItems.AddSimpleFor(m => m.PieceRateCode1).Label(q => q.Text("Piece Rate Code")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+                                                                                                                                       groupItems.AddSimpleFor(m => m.ReamerHoles).ColSpan(1);
+                                                                                                                                       groupItems.AddSimpleFor(m => m.ReamerHolesMetres).Label(q => q.Text("(m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(1);
 
-                                                                                                 groupItems.AddSimpleFor(m => m.StrippingHolesFired).Label(q => q.Text("Stripping Holes Fired")).ColSpan(2).Editor(e => e.TextBox().Width("20%"));
-                                                                                                 groupItems.AddSimpleFor(m => m.StrippingHolesFiredVol).Label(q => q.Text("Vol (m3)")).ColSpan(2).Editor(e => e.TextBox().Width("20%"));
-
-                                                                                                 groupItems.AddSimpleFor(m => m.Contractitem2).Label(q => q.Text("Contact Item")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
-                                                                                                 groupItems.AddSimpleFor(m => m.PieceRateCode2).Label(q => q.Text("Piece Rate Code")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
-
-                                                                                                 groupItems.AddSimpleFor(m => m.WetHolesFired).Label(q => q.Text("Wet Holes Fired")).ColSpan(4).Editor(e => e.TextBox().Width("20%"));
-
-                                                                                                 groupItems.AddSimpleFor(m => m.ContractItem3).Label(q => q.Text("Contact Item")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
-                                                                                                 groupItems.AddSimpleFor(m => m.PieceRateCode3).Label(q => q.Text("Piece Rate Code")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
-
-                                                                                                 groupItems.AddSimpleFor(m => m.TotalHolesFired).Label(q => q.Text("Total Holes Fired")).ColSpan(1);
-                                                                                                 groupItems.AddSimpleFor(m => m.BlastPlanReceived).Label(q => q.Text("Blast Plan Received ?")).Editor(e => e.SelectBox().DataSource(new String[] { "N/A", "Yes" }).Width("100%")).ColSpan(1);
-                                                                                                 groupItems.AddSimpleFor(m => m.Shotfirer).Label(q => q.Text("Shotfirer")).Editor(e => e.SelectBox().DataSource(new String[] { "Option 1", "Option 2" }).Width("100%")).ColSpan(2);
-
-                                                                                                 groupItems.AddSimpleFor(m => m.Comments).Label(q => q.Text("Comments")).ColSpan(4).Editor(e => e.TextBox().Width("66%"));
-
-                                                                                             }).ColSpan(2)
-                                                                                             .CssClass("wrapper-for-group");
+                                                                                                                                       groupItems.AddSimpleFor(m => m.CableBoltMetres).Label(q => q.Text("Cable Bolt (m)")).Editor(e => e.TextBox().Width("25%")).ColSpan(2);
 
 
+                                                                                                                                   }).CssClass("wrapper-for-group");
+
+                                                                                                                    items.AddGroup()
+                                                                                     .Caption("Griddy McGridface")
+                                                                                     .ColSpan(2)
+                                                                                     .Template(@<text>
+                                                                                        @(Html.DevExtreme().DataGrid<GroundSupportItem>()
+                                                                                                                                        .ShowBorders(true)
+                                                                                                                                        .Columns(columns =>
+                                                                                                                                        {
+                                                                                                                                                       columns.AddFor(m => m.Item).Caption("Ground Support Item #");
+                                                                                                                                                       columns.AddFor(m => m.Quantity);
+                                                                                                                                                       columns.AddFor(m => m.MetresDrilled);
+                                                                                                                                                       columns.AddFor(m => m.PieceRateCode);
+                                                                                                                                                   })
+                                                                                                                                        .Paging(p => p.PageSize(10))
+                                                                                                                                        .FilterRow(f => f.Visible(true))
+                                                                                                                                        .HeaderFilter(f => f.Visible(true))
+                                                                                                                                        .GroupPanel(p => p.Visible(true))
+                                                                                                                                        .Grouping(g => g.AutoExpandAll(false))
+                                                                                                                                        .RemoteOperations(true)
+
+                                                                                                                                        .Summary(s => s
+                                                                                                                                        .TotalItems(totalItems =>
+                                                                                                                                        {
+                                                                                                                                                       totalItems.AddFor(m => m.ItemId).SummaryType(SummaryType.Count);
+                                                                                                                                                   })
+                                                                                                                                        .GroupItems(groupItems =>
+                                                                                                                                        {
+                                                                                                                                                       groupItems.Add().SummaryType(SummaryType.Count);
+                                                                                                                                                   })
+                                                                                                                                        ).ToTemplate()
+                                                                                        )
+                                                                                    </text>).CssClass("wrapper-for-group");
+
+                                                                                                   items.AddGroup()
+                                                                                            .Caption("Cuts / Holes Fired")
+                                                                                            .ColSpan(2).ColCount(4)
+                                                                                            .Items(groupItems =>
+                                                                                            {
+                                                                                                                           groupItems.AddSimpleFor(m => m.DrivingCutsFired).Editor(e => e.TextBox().Placeholder("Add values")).Label(q => q.Text("Driving Cuts Fired")).ColSpan(1);
+                                                                                                                           groupItems.AddSimpleFor(m => m.DrivingCutsFiredMetres).Editor(e => e.TextBox().Placeholder("Add values")).Label(q => q.Text("Metres/Cut")).ColSpan(1);
+                                                                                                                           groupItems.AddSimpleFor(m => m.DrivingCutsFiredAdv).Label(q => q.Text("Adv (m)")).ColSpan(1);
+                                                                                                                           groupItems.AddSimpleFor(m => m.DrivingCutsFiredVol).Label(q => q.Text("Vol (m3)")).ColSpan(1);
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.ContractItem1).Label(q => q.Text("Contact Item")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+                                                                                                                           groupItems.AddSimpleFor(m => m.PieceRateCode1).Label(q => q.Text("Piece Rate Code")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.StrippingHolesFired).Label(q => q.Text("Stripping Holes Fired")).ColSpan(2).Editor(e => e.TextBox().Width("20%"));
+                                                                                                                           groupItems.AddSimpleFor(m => m.StrippingHolesFiredVol).Label(q => q.Text("Vol (m3)")).ColSpan(2).Editor(e => e.TextBox().Width("20%"));
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.Contractitem2).Label(q => q.Text("Contact Item")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+                                                                                                                           groupItems.AddSimpleFor(m => m.PieceRateCode2).Label(q => q.Text("Piece Rate Code")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.WetHolesFired).Label(q => q.Text("Wet Holes Fired")).ColSpan(4).Editor(e => e.TextBox().Width("20%"));
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.ContractItem3).Label(q => q.Text("Contact Item")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+                                                                                                                           groupItems.AddSimpleFor(m => m.PieceRateCode3).Label(q => q.Text("Piece Rate Code")).Editor(e => e.SelectBox().DataSource(new[] { "Option 1", "Option 2" })).ColSpan(2);
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.TotalHolesFired).Label(q => q.Text("Total Holes Fired")).ColSpan(1);
+                                                                                                                           groupItems.AddSimpleFor(m => m.BlastPlanReceived).Label(q => q.Text("Blast Plan Received ?")).Editor(e => e.SelectBox().DataSource(new String[] { "N/A", "Yes" }).Width("100%")).ColSpan(1);
+                                                                                                                           groupItems.AddSimpleFor(m => m.Shotfirer).Label(q => q.Text("Shotfirer")).Editor(e => e.SelectBox().DataSource(new String[] { "Option 1", "Option 2" }).Width("100%")).ColSpan(2);
+
+                                                                                                                           groupItems.AddSimpleFor(m => m.Comments).Label(q => q.Text("Comments")).ColSpan(4).Editor(e => e.TextBox().Width("66%"));
+
+                                                                                                                       }).ColSpan(2)
+                                                                                            .CssClass("wrapper-for-group");
 
 
 
 
 
-                                                                                    items.AddButton()
-                                        .ColSpan(2)
-                                        .HorizontalAlignment(HorizontalAlignment.Center)
-                                        .ButtonOptions(b => b.Text("Save")
-                                        .Type(ButtonType.Success)
-                                        .UseSubmitBehavior(true)
-                                        .Width("50%")
-                                        ).CssClass("wrapper-for-group");
-                                                                                })
-                                                                                               .OnContentReady(@<text>
-                                                                                                function(e) {
-                                                                                                e.component.validate();
-                                                                                                }
-                                                                                            </text>).FormData(Model)
-        )
+
+
+                                                                                                   items.AddButton()
+                                       .ColSpan(2)
+                                       .HorizontalAlignment(HorizontalAlignment.Center)
+                                       .ButtonOptions(b => b.Text("Save")
+                                       .Type(ButtonType.Success)
+                                       .UseSubmitBehavior(true)
+                                       .Width("50%")
+                                       ).CssClass("wrapper-for-group");
+                                                                                               })
+                                                                                                                         .OnContentReady(@<text>
+                                                                                                                            function(e) {
+                                                                                                                            e.component.validate();
+                                                                                                                            }
+                                                                                                                        </text>).FormData(Model)
+            )
+        }
     }
-}
 
 
+</div>
